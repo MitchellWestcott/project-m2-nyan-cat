@@ -34,6 +34,22 @@ const nextEnemySpot = (enemies) => {
   return candidate;
 };
 
+const nextBonusSpot = (bonuses) => {
+  const bonusSpots = GAME_WIDTH / BONUS_WIDTH;
+
+  const bonusSpotsTaken = [false, false, false, false, false];
+  bonuses.forEach((bonus) => {
+    bonusSpotsTaken[bonus.bonusSpot] = true;
+  })
+
+
+  let newBonus = undefined;
+  while (newBonus === undefined || bonusSpotsTaken[newBonus]) {
+    newBonus = Math.floor(Math.random() * bonusSpots);
+  }
+  return newBonus;
+};
+
 // addBackground contains all the logic to display the starry background of the game.
 // It is a variable that refers to a function.
 // The function takes one parameter
@@ -43,9 +59,10 @@ const addBackground = (root) => {
   const bg = document.createElement('img');
 
   // We set its src attribute and the height and width CSS attributes
-  bg.src = 'images/stars.png';
+  bg.src = 'images/backgroundflag.png';
   bg.style.height = `${GAME_HEIGHT}px`;
-  bg.style.width = `${GAME_WIDTH}px`;
+  bg.style.width = `840px`;
+  bg.style.borderRadius = `10px`;
 
   // We add it to the root DOM node
   root.append(bg);
@@ -59,8 +76,18 @@ const addBackground = (root) => {
   whiteBox.style.zIndex = 100;
   whiteBox.style.position = 'absolute';
   whiteBox.style.top = `${GAME_HEIGHT}px`;
+  whiteBox.style.left = `0px`;
   whiteBox.style.height = `${ENEMY_HEIGHT}px`;
-  whiteBox.style.width = `${GAME_WIDTH}px`;
-  whiteBox.style.background = '#fff';
+  whiteBox.style.width = `840px`;
+  whiteBox.style.background = '#dafaf7';
+  
+  
   root.append(whiteBox);
+
+  // var sec = 0;
+  //   function pad ( val ) { return val > 9 ? val : "0" + val; }
+  //   setInterval( function(){
+  //       document.getElementById("seconds").innerHTML=pad(++sec%60);
+  //       document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
+  //   }, 1000);
 };

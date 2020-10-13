@@ -24,3 +24,4 @@ class Text {
     this.domElement.innerText = txt;
   }
 }
+

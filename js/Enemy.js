@@ -36,7 +36,7 @@ class Enemy {
     this.domElement = document.createElement('img');
 
     // We give it a src attribute to specify which image to display.
-    this.domElement.src = './images/enemy.png';
+    this.domElement.src = './images/terf.png';
     // We modify the CSS style of the DOM node.
     this.domElement.style.position = 'absolute';
     this.domElement.style.left = `${this.x}px`;
@@ -45,7 +45,20 @@ class Enemy {
 
     // Show that the user can actually see the img DOM node, we append it to the root DOM node.
     theRoot.appendChild(this.domElement);
-    this.speed = Math.random() / 2 + 0.25;
+    this.speed = Math.random() / 2 + 0.15;
+    // if (gameEngine.initialScore < 1 && gameEngine.initialScore > 25) {
+    //   this.speed = Math.random() / 2 + 0.10;
+    //   console.log(this.speed);
+    // } else if (gameEngine.initialScore < 25 && gameEngine.initialScore > 50) {
+    //   this.speed = Math.random() /2 + 0.25;
+    // } else if (gameEngine.initialScore < 50 && gameEngine.initialScore > 100) {
+    //   this.speed = Math.random() / 2 + 0.85;
+    //   console.log("50");
+    // } else if (gameEngine.initialScore > 100) {
+    //   this.speed = Math.random() / 2 + 0.01;
+    // } else {
+    //   this.speed = Math.random() /2 + 0.10;
+    // };
   }
 
   // We set the speed property of the enemy. This determines how fast it moves down the screen.
@@ -67,5 +80,9 @@ class Enemy {
 
       this.destroyed = true;
     }
+    // console.log(this.y);
+    // console.log(this.x);
+    // console.log(this.ENEMY_WIDTH);
+    // console.log(this.ENEMY_HEIGHT);
   }
 }
